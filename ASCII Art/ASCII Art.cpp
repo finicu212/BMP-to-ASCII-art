@@ -1,9 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include "../includes/EasyBMP/EasyBMP.h"
 
-unsigned char getMostIntenseColor(RGBApixel pixel)
+float getMostIntenseColor(RGBApixel pixel)
 {
-    unsigned char mostIntense = pixel.Red;
+    float mostIntense = pixel.Red;
     if (pixel.Blue > mostIntense)
         mostIntense = pixel.Blue;
     if (pixel.Green > mostIntense)
@@ -16,9 +17,17 @@ int main()
 {
     BMP image;
     image.ReadFromFile("../input/photo1.bmp");
+    std::ofstream out;
+    out.open("out.txt");
+
+    if (!out.is_open())
+    {
+        std::cerr << "Failed opening output file";
+        return 1;
+    }
 
     // source: http://paulbourke.net/dataformats/asciiart/
-    const char *intensityRamp = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
+    char intensityRamp[] = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
 
     for (int i = 0; i < image.TellHeight(); i++)
     {
@@ -26,10 +35,12 @@ int main()
         {
             RGBApixel currPixel = image.GetPixel(j, i);
 
-            unsigned char mostIntense = getMostIntenseColor(currPixel);
-            std::cout << static_cast<int>(mostIntense) << "\n";
+            int intensityRampIdx = getMostIntenseColor(currPixel) / 256 * strlen(intensityRamp);
+            out << intensityRamp[intensityRampIdx];
         }
+        out << "\n";
     }
 
+    out.close();
     return 0;
 }
