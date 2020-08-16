@@ -20,14 +20,14 @@ int main()
     // source: http://paulbourke.net/dataformats/asciiart/
     const char *intensityRamp = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
 
-    for (int i = 0; i < image.TellWidth() - 1; i++)
+    for (int i = 0; i < image.TellHeight(); i++)
     {
-        for (int j = 0; j < image.TellHeight() - 1; j++)
+        for (int j = 0; j < image.TellWidth(); j++)
         {
-            RGBApixel currPixel = image.GetPixel(i, j);
+            RGBApixel currPixel = image.GetPixel(j, i);
 
             unsigned char mostIntense = getMostIntenseColor(currPixel);
-            std::cout << (int) mostIntense << "\n";
+            std::cout << static_cast<int>(mostIntense) << "\n";
         }
     }
 
