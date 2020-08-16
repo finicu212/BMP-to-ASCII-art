@@ -27,7 +27,7 @@ int main()
     }
 
     // source: http://paulbourke.net/dataformats/asciiart/
-    char intensityRamp[] = "@%#*+=-;. ";
+    const char* intensityRamp = "@%#*+=-;. ";
 
     for (int i = 0; i < image.TellHeight(); i+=2)
     {
