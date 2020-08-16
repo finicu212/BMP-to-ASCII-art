@@ -16,7 +16,7 @@ float getMostIntenseColor(RGBApixel pixel)
 int main()
 {
     BMP image;
-    image.ReadFromFile("../input/photo1.bmp");
+    image.ReadFromFile("../input/photo2.bmp");
     std::ofstream out;
     out.open("out.txt");
 
@@ -29,7 +29,7 @@ int main()
     // source: http://paulbourke.net/dataformats/asciiart/
     char intensityRamp[] = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
 
-    for (int i = 0; i < image.TellHeight(); i++)
+    for (int i = 0; i < image.TellHeight(); i+=2)
     {
         for (int j = 0; j < image.TellWidth(); j++)
         {
