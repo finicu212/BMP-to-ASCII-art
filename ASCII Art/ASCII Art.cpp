@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "../includes/EasyBMP/EasyBMP.h"
 
 float getMostIntenseColor(RGBApixel pixel)
@@ -16,7 +17,13 @@ float getMostIntenseColor(RGBApixel pixel)
 int main()
 {
     BMP image;
-    image.ReadFromFile("../input/photo2.bmp");
+    std::string relativePath = "../input/", imagePath;
+
+    std::cout << "Path to file (relative to input/): ";
+    std::cin >> imagePath;
+    relativePath += imagePath;
+
+    image.ReadFromFile(relativePath.c_str());
     std::ofstream out;
     out.open("out.txt");
 
