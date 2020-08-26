@@ -40,5 +40,5 @@ Output:
 
 ## EasyBMP
 
-This program uses EasyBMP to read BMP files. https://github.com/izanbf1803/EasyBMP
+This program uses EasyBMP to read BMP files. http://easybmp.sourceforge.net/
 
