@@ -42,5 +42,7 @@ int main()
     }
 
     out.close();
+    system("notepad.exe out.txt");
+
     return 0;
 }
